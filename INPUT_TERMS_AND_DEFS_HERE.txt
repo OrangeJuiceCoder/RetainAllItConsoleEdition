@@ -4,5 +4,28 @@ This is the user input file.  Add you terms and defs here.
 Each pair must be put on a seperate line, and each term must be seperated from its def with a "-"    
 
 ====== DO NOT MODIFY THIS LINE OR ANYTHING BEFORE THIS LINE =======
-1      - 2
-a-b
+a person who has been rejected by society or a social group - outcast 
+to draw a conclusion based on evidence / clues - infer
+something that tends to do harm or have adverse effects - inimical
+impressive or amazing at something - prodigious
+something that teaches you something - didactic
+describes a person or thing's state of being as better than other's around it - eminent
+refusing to change your opinion or course of action, despite attempts to persuade you to do - obstinacy
+something that is unfair or immoral - iniquity
+facial features or expressions that show qualities of mind or personality - physiognomy
+the condition of only existing for a short time then fading - evanescent
+a external form, appearance, or manner of presentation, typically concealing the true nature of something - guise
+lacking the power to move - inert
+to display an emotion strongly and openly or to discharge a moisture or a smell at a slow pace - exudes
+to cause horror - lurid
+being deserving of humiliation and embarrassment, or causing an embarrassing public display - ignominious
+a crowd of a large group of people - throng
+the quality of being wise - sagacity
+signs that something will not be successful or positive - inauspicious
+to lower the tension and force of something negative - abate
+insisting immediate and unwavering attention - peremptory
+showing a genuine sense of sadness and regret for one's action - poignant
+charming or attractive - beguiling
+excessive or uncontrolled indulgence in sexual activity - lecherous
+to fill with joy - enraptured
+a lie or the act of lying to damage a reputation - calumny
