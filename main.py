@@ -1,16 +1,23 @@
 import random
 
-##====================USER INPUTS====================##
+# declare term and def lists
+terms = []
 
-# Add terms and definitions here
-# Make sure there are the same amt of terms as there are defs
+defs = []
 
-terms = ["Ammonium", "Hydroxide", "Cyanide", "Nitrate", "Sulfate", "Phosphate", "Chromate", "Carbonate", "Acetate", "Permanganate", "Nitrite", "Sulfite", "Phosphite", "Dichromate"]
+# reads file
+inputF = open('INPUT_TERMS_AND_DEFS_HERE.txt', 'r')
+Lines = inputF.readlines()
 
-defs = ["NH_4^+", "OH^-", "CN^-", "NO_3^-", "SO_4^2-", "PO_4^3-", "CrO_4^2-", "CO_3^2-", "C_2H_3O_2^-", "MnO_4^-", "NO_2^-", "SO_3^2-", "PO_3^3-", "Cr_2O_7^2-"]
-
-##========================================##
-
+# reads terms and defs from file into list, skipping first line
+ct = 0
+for line in Lines:
+    if ct == 0:
+        ct += 1
+    else:
+        termt, deft = line.split("-")
+        terms.append(termt.strip())
+        defs.append(deft.strip())
 
 # print title logo function
 def title():
@@ -41,7 +48,7 @@ ans = input(
     "What mode would you like to learn in? (Type small, medium, large): ")
 ans = ans.lower()
 if ans == "small":
-    length = 50
+    length = 30
 elif ans == "medium":
     length = 100
 elif ans == "large":
@@ -111,7 +118,7 @@ while True:
     if len(terms_cpy) < 1:
         break
 
-    # generate summary
+    # generasmte summary
     tolearn = []
     for i in range(len(terms_cpy)):
         tolearn.append(terms_cpy[i] + " -> " + defs_cpy[i])
