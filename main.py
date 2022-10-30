@@ -5,14 +5,20 @@ terms = []
 
 defs = []
 
+# variable for the default length of session
+DEFAULT_LENGTH = 100
+
 # reads file
 inputF = open('INPUT_TERMS_AND_DEFS_HERE.txt', 'r')
 Lines = inputF.readlines()
 
-# reads terms and defs from file into list, skipping first line
-ct = 0
+# variable to store the line number where the instructions end in the input file
+END_OF_INSTRUCTIONS_LINE_NUM = 6
+
+# reads terms and defs from file into list, skipping the "how to use" lines
+ct = 1
 for line in Lines:
-    if ct == 0:
+    if ct <= END_OF_INSTRUCTIONS_LINE_NUM:
         ct += 1
     else:
         termt, deft = line.split("-")
@@ -30,12 +36,10 @@ def title():
     print()
     print()
 
-
+# preve choice so you don't get the same question 
 prevChoice = ""
 
-# copy inputs into a list so it can be modified without modifiying original
-terms_cpy = terms
-defs_cpy = defs
+# for storing terms completely learned
 learned = []
 
 # welcome screen
@@ -44,8 +48,7 @@ print()
 title()
 
 # ask user for what mode they want to do
-ans = input(
-    "What mode would you like to learn in? (Type small, medium, large): ")
+ans = input("What mode would you like to learn in? (Type small, medium, large): ")
 ans = ans.lower()
 if ans == "small":
     length = 30
@@ -54,11 +57,27 @@ elif ans == "medium":
 elif ans == "large":
     length = 200
 else:
-    length = 100
+    print("Invalid input - setting length to default")
+    length = DEFAULT_LENGTH
+
+print()
+
+ans = input("Would you like the questions to ask for (a) the corresponding definition to the given term, or (b) the correspodning term to the given definition? (a) terms or (b) definitions? (type a or b)")
+ans = ans.lower()
+if ans == "a":
+    questionsList = terms
+    answers = defs
+elif ans == "b":
+    questionsList = defs
+    answers = terms
+else:
+    print("Invalid input - defaulting to choice a")
+    questionsList = terms
+    answers = defs
 
 # create the chances to weight the random selections
 chance = []
-for i in range(len(terms_cpy)):
+for i in range(len(questionsList)):
     chance.append(length)
 
 questions = 0
@@ -74,39 +93,39 @@ while True:
 
         ## pick question and ask it
         # make sure question isnt the same as the immediate last one
-        rIndex = random.choices(range(len(terms_cpy)), weights=chance, k=2)
+        rIndex = random.choices(range(len(questionsList)), weights=chance, k=2)
         rIndex = int(rIndex[0])
-        if len(terms_cpy) > 1:
-            while terms_cpy[rIndex] == prevChoice:
-                rIndex = random.choices(range(len(terms_cpy)),
+        if len(questionsList) > 1:
+            while questionsList[rIndex] == prevChoice:
+                rIndex = random.choices(range(len(questionsList)),
                                         weights=chance,
                                         k=2)
                 rIndex = int(rIndex[0])
-            prevChoice = terms_cpy[rIndex]
+            prevChoice = questionsList[rIndex]
 
         print(chance)
-        ans = input(">> " + terms_cpy[rIndex] + " ")
+        ans = input(">> " + questionsList[rIndex] + " ")
 
         # check if question is right
         # if right, subtract the weight by 5, if wrong, add weight by 5
-        if ans == defs_cpy[rIndex]:
+        if ans == answers[rIndex]:
             chance[rIndex] -= 10
         else:
             chance[rIndex] += 10
             print("no that wrong.")
-            ans = input("Type \"" + terms_cpy[rIndex] + " is " +
-                        defs_cpy[rIndex] + "\" to continue: ")
+            ans = input("Type \"" + questionsList[rIndex] + " is " +
+                        answers[rIndex] + "\" to continue: ")
 
         # remove any items that have a weight of 0
         toremove = []
-        for i in range(len(terms_cpy)):
+        for i in range(len(questionsList)):
             if chance[i] == 0:
                 toremove.append(i)
-        if len(terms_cpy) >= 1:
+        if len(questionsList) >= 1:
             for j in range(len(toremove)):
                 learned.append(
-                    terms_cpy.pop(toremove[j]) + " -> " +
-                    defs_cpy.pop(toremove[j]))
+                    questionsList.pop(toremove[j]) + " -> " +
+                    answers.pop(toremove[j]))
                 chance.pop(toremove[j])
         else:
             break
@@ -115,13 +134,13 @@ while True:
         questions += 1
 
     # continue out of the nested loop if all terms are completed
-    if len(terms_cpy) < 1:
+    if len(questionsList) < 1:
         break
 
     # generasmte summary
     tolearn = []
-    for i in range(len(terms_cpy)):
-        tolearn.append(terms_cpy[i] + " -> " + defs_cpy[i])
+    for i in range(len(questionsList)):
+        tolearn.append(questionsList[i] + " -> " + answers[i])
 
     learning = []
     for j in range(len(tolearn)):

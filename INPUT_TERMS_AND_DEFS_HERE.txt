@@ -1,4 +1,8 @@
-# This is the user input file.  Add you terms and defs here.  Each pair must be put on a seperate line, and each term must be seperated from its def with a "-"
-Hi - hello
-bye     -  dfjkdjf  
-gg-yea
+IMPORTANT!        
+This is the user input file.  Add you terms and defs here.  
+
+Each pair must be put on a seperate line, and each term must be seperated from its def with a "-"    
+
+====== DO NOT MODIFY THIS LINE OR ANYTHING BEFORE THIS LINE =======
+1      - 2
+a-b
