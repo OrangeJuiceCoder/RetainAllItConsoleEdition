@@ -1,0 +1,12 @@
+For those who don't know what to do with this to get it actually working:
+
+Select the main.py file
+copy everything in the main.py file
+open up a new tab and search up a online python compiler
+preferably replit.com or if your using it more temporarily I suggest: "https://www.onlinegdb.com/online_python_compiler"
+delete everything in the main.py file created and paste the code into the main.py file displayed
+then create a new file in the ide / compiler and name it "INPUT_TERMS_AND_DEFS_HERE.txt"
+copy and paste the INPUT_TERMS_AND_DEFS_HERE.txt in this github repository into that file
+then just simply follow the instructions you just pasted into the file to insert terms
+click the run / compile button in the ide / compilder
+and enjoy :D
